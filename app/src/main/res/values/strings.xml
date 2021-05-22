@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">OCCSHOTtest</string>
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="login_with_google">Login with Google</string>
+    <string name="main_logo">Main Logo</string>
+    <string name="this_is_just_a_view">this is just a view</string>
+    <string name="we_do_not_store_promise">we do not store promise</string>
+    <string name="we_never_store_any_of_your_login_information_nyour_login_credentials_are_safe_with_our_firestore_to_user_policy">We never store any of your login information.\nYour login credentials are safe with our Firestore to user policy.</string>
+    <string name="google_icon_for_loginbar">Google ICON for loginbar</string>
+    <string name="fb_icon_for_loginbar">FB icon for Loginbar</string>
+    <string name="nameTextView">Name</string>
+    <string name="welcome">Welcome,</string>
+    <string name="emailTextView">Email</string>
+    <string name="main_header_logo">Main Header Logo</string>
+    <string name="log_out">Log Out</string>
+</resources>

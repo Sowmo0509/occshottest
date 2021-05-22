@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#090909"
+    tools:context=".MainActivity">
+
+    <View
+        android:id="@+id/view4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/this_is_just_a_view"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/mainLogo"
+        android:layout_width="231sp"
+        android:layout_height="35sp"
+        android:layout_marginTop="248dp"
+        android:contentDescription="@string/main_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view4"
+        app:srcCompat="@drawable/wlogo" />
+
+    <ImageView
+        android:id="@+id/g_bg"
+        android:layout_width="363sp"
+        android:layout_height="80sp"
+        android:layout_marginTop="50dp"
+        android:contentDescription="@string/login_with_google"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainLogo"
+        app:srcCompat="@drawable/loginbar" />
+
+    <ImageView
+        android:id="@+id/fb_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:contentDescription="@string/login_with_facebook"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/g_bg"
+        app:srcCompat="@drawable/loginbar" />
+
+    <TextView
+        android:id="@+id/securityText"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:contentDescription="@string/we_do_not_store_promise"
+        android:gravity="center"
+        android:text="@string/we_never_store_any_of_your_login_information_nyour_login_credentials_are_safe_with_our_firestore_to_user_policy"
+        android:textColor="#808080"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fb_bg"
+        app:layout_constraintVertical_bias="0.888" />
+
+    <TextView
+        android:id="@+id/loginWGoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginEnd="184dp"
+        android:layout_marginRight="184dp"
+        android:fontFamily="@font/productsans_bold"
+        android:text="@string/login_with_google"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/g_bg"
+        app:layout_constraintEnd_toEndOf="@+id/g_bg"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/g_ico"
+        app:layout_constraintTop_toTopOf="@+id/g_bg"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <ImageView
+        android:id="@+id/g_ico"
+        android:contentDescription="@string/google_icon_for_loginbar"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/g_bg"
+        app:layout_constraintStart_toStartOf="@+id/g_bg"
+        app:layout_constraintTop_toTopOf="@+id/g_bg"
+        app:srcCompat="@drawable/google_hd" />
+
+    <ImageView
+        android:id="@+id/fb_ico"
+        android:contentDescription="@string/fb_icon_for_loginbar"
+        android:layout_width="20sp"
+        android:layout_height="20sp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fb_bg"
+        app:layout_constraintStart_toStartOf="@+id/fb_bg"
+        app:layout_constraintTop_toTopOf="@+id/fb_bg"
+        app:srcCompat="@drawable/fb_hd" />
+
+    <TextView
+        android:id="@+id/loginWFb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:fontFamily="@font/productsans_bold"
+        android:text="@string/login_with_facebook"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/fb_bg"
+        app:layout_constraintEnd_toEndOf="@+id/fb_bg"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/fb_ico"
+        app:layout_constraintTop_toTopOf="@+id/fb_bg"
+        app:layout_constraintVertical_bias="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
