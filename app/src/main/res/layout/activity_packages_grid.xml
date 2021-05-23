@@ -89,7 +89,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toTopOf="@+id/guideline11"
-        app:srcCompat="@drawable/imgloading_placeholder" />
+        app:srcCompat="@drawable/imgloading_placeholdertextmid" />
 
     <ImageView
         android:id="@+id/pkg1img"
@@ -101,7 +101,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/guideline11"
-        app:srcCompat="@drawable/imgloading_placeholder" />
+        app:srcCompat="@drawable/imgloading_placeholdertextmid" />
 
     <ImageView
         android:id="@+id/pkg3img"
@@ -113,7 +113,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/guideline5"
-        app:srcCompat="@drawable/imgloading_placeholder" />
+        app:srcCompat="@drawable/imgloading_placeholdertextmid" />
 
     <ImageView
         android:id="@+id/pkg4img"
@@ -125,7 +125,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toTopOf="@+id/guideline5"
-        app:srcCompat="@drawable/imgloading_placeholder" />
+        app:srcCompat="@drawable/imgloading_placeholdertextmid" />
 
     <ImageView
         android:id="@+id/pkg5img"
@@ -137,7 +137,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline13"
         app:layout_constraintStart_toStartOf="@+id/guideline9"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
-        app:srcCompat="@drawable/imgloading_placeholder" />
+        app:srcCompat="@drawable/imgloading_placeholdertextmid" />
 
     <ImageView
         android:id="@+id/pkg6img"
@@ -149,7 +149,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline10"
         app:layout_constraintStart_toStartOf="@+id/guideline14"
         app:layout_constraintTop_toTopOf="@+id/guideline6"
-        app:srcCompat="@drawable/imgloading_placeholder" />
+        app:srcCompat="@drawable/imgloading_placeholdertextmid" />
 
     <TextView
         android:id="@+id/pkg3name"
@@ -328,7 +328,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:fontFamily="@font/productsans_bold"
-        android:text="TextView"
+        android:text="Package Name"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:autoSizeTextType="uniform"
@@ -344,7 +344,7 @@
         android:layout_marginStart="12dp"
         android:layout_marginLeft="12dp"
         android:fontFamily="@font/productsans_bold"
-        android:text="TextView"
+        android:text="Package Name"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:autoSizeTextType="uniform"
@@ -362,7 +362,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="2dp"
         android:fontFamily="@font/productsans_bold"
-        android:text="TextView"
+        android:text="Loading Price"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:autoSizeTextType="uniform"
@@ -379,7 +379,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="2dp"
         android:fontFamily="@font/productsans_bold"
-        android:text="TextView"
+        android:text="Loading Price"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:autoSizeTextType="uniform"
