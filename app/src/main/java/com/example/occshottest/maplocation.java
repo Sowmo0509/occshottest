@@ -3,6 +3,7 @@ package com.example.occshottest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -54,7 +55,13 @@ public class maplocation extends AppCompatActivity implements LocationListener {
         button_location = findViewById(R.id.button_location);
 
         rootDatabaseref = FirebaseDatabase.getInstance().getReference("Location").child("Lat");
-        rootDatabaseref2 = FirebaseDatabase.getInstance().getReference("Location").child("Long");
+        rootDatabaseref2 = FirebaseDatabase.getInstance().getReference("Location").child("Lon");
+
+        // Runtime Permission for Location Access
+        if (ContextCompat.checkSelfPermission(maplocation.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(maplocation.this, new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION}, 100);
+        }
 
 
         button_location.setOnClickListener(new View.OnClickListener() {
@@ -63,9 +70,7 @@ public class maplocation extends AppCompatActivity implements LocationListener {
                 rootDatabaseref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            datalong = Double.parseDouble(snapshot.getValue().toString());
-                        }
+                        datalong = Double.parseDouble(snapshot.getValue().toString());
                     }
 
                     @Override
@@ -76,10 +81,7 @@ public class maplocation extends AppCompatActivity implements LocationListener {
                 rootDatabaseref2.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                        if (snapshot.exists()) {
-                            datalat = Double.parseDouble(snapshot.getValue().toString());
-                        }
-
+                        datalat = Double.parseDouble(snapshot.getValue().toString());
                     }
 
                     @Override
@@ -105,27 +107,32 @@ public class maplocation extends AppCompatActivity implements LocationListener {
                 // for ActivityCompat#requestPermissions for more details.
                 return;
             }
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 5, maplocation.this);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000, 0, maplocation.this);
         }catch (Exception e){
-            e.printStackTrace();
+            //e.printStackTrace();
+        }
+
+        //Toast.makeText(this, ""+datalong+","+datalat, Toast.LENGTH_SHORT).show();
+        Geocoder geocoder = new Geocoder(maplocation.this, Locale.getDefault());
+
+        try{
+            List<Address> addresses = geocoder.getFromLocation(datalong,datalat, 1);
+            String address = addresses.get(0).getAddressLine(0);
+
+            textLocation3.setText(address);
+            String doubletostring = Double.toString(datalong);
+            textLocation1.setText(doubletostring);
+
+        }catch (Exception e){
+            //e.printStackTrace();
+            Toast.makeText(this, "Click Again", Toast.LENGTH_SHORT).show();
         }
     }
 
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        Toast.makeText(this, ""+datalong+","+datalat, Toast.LENGTH_SHORT).show();
 
-        try{
-            Geocoder geocoder = new Geocoder(maplocation.this, Locale.getDefault());
-            List<Address> addresses = geocoder.getFromLocation(datalong,datalat, 1);
-            String address = addresses.get(0).getAddressLine(0);
-
-            textLocation3.setText(address);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
     }
 
     @Override
