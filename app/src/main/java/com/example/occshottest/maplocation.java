@@ -54,8 +54,8 @@ public class maplocation extends AppCompatActivity implements LocationListener {
         textLocation3 = findViewById(R.id.textLocation3);
         button_location = findViewById(R.id.button_location);
 
-        rootDatabaseref = FirebaseDatabase.getInstance().getReference("Location").child("Lat");
-        rootDatabaseref2 = FirebaseDatabase.getInstance().getReference("Location").child("Lon");
+        rootDatabaseref = FirebaseDatabase.getInstance().getReference("Lat");
+        rootDatabaseref2 = FirebaseDatabase.getInstance().getReference("Long");
 
         // Runtime Permission for Location Access
         if (ContextCompat.checkSelfPermission(maplocation.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -120,8 +120,6 @@ public class maplocation extends AppCompatActivity implements LocationListener {
             String address = addresses.get(0).getAddressLine(0);
 
             textLocation3.setText(address);
-            String doubletostring = Double.toString(datalong);
-            textLocation1.setText(doubletostring);
 
         }catch (Exception e){
             //e.printStackTrace();
