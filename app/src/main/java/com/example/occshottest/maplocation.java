@@ -33,7 +33,6 @@ public class maplocation extends AppCompatActivity implements LocationListener {
 
     Button button_location;
     TextView textLocation1;
-    TextView textLocation2;
     TextView textLocation3;
     LocationManager locationManager;
     private DatabaseReference rootDatabaseref;
@@ -50,7 +49,7 @@ public class maplocation extends AppCompatActivity implements LocationListener {
         setContentView(R.layout.activity_maplocation);
 
         textLocation1 = findViewById(R.id.textLocation1);
-        textLocation2 = findViewById(R.id.textLocation2);
+        //textLocation2 dorkar nai tai deleted
         textLocation3 = findViewById(R.id.textLocation3);
         button_location = findViewById(R.id.button_location);
 

@@ -66,11 +66,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginRight="156dp"
         android:fontFamily="@font/productsan_reg"
         android:text="Name"
         android:textColor="#ffffff"
         app:layout_constraintBottom_toTopOf="@+id/pkgView"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/costTotal"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -92,28 +94,30 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView11"
+        app:layout_constraintBottom_toTopOf="@+id/mapView"
         app:layout_constraintDimensionRatio="4:1"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/nameFetch"
-        app:srcCompat="@drawable/rect_avg" />
+        app:srcCompat="@drawable/rect_avg"
+        app:tint="@color/button_color_changer" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/mapView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView12"
+        app:layout_constraintBottom_toTopOf="@+id/orderView"
         app:layout_constraintDimensionRatio="4:1"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/pkgView"
-        app:srcCompat="@drawable/rect_avg" />
+        app:srcCompat="@drawable/rect_avg"
+        app:tint="@color/button_color_changer" />
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/orderView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/imageView13"
@@ -121,8 +125,9 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/imageView11"
-        app:srcCompat="@drawable/rect_avg" />
+        app:layout_constraintTop_toBottomOf="@+id/mapView"
+        app:srcCompat="@drawable/rect_avg"
+        app:tint="@color/button_color_changer" />
 
     <ImageView
         android:id="@+id/imageView13"
@@ -133,8 +138,9 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toBottomOf="@+id/imageView12"
-        app:srcCompat="@drawable/rect_avg" />
+        app:layout_constraintTop_toBottomOf="@+id/orderView"
+        app:srcCompat="@drawable/rect_avg"
+        app:tint="@color/button_color_changer" />
 
     <ImageView
         android:id="@+id/imageView14"
@@ -147,7 +153,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
         app:layout_constraintTop_toBottomOf="@+id/imageView13"
-        app:srcCompat="@drawable/rect_avg" />
+        app:srcCompat="@drawable/rect_avg"
+        app:tint="@color/button_color_changer" />
 
     <ImageView
         android:id="@+id/imageView15"
@@ -171,10 +178,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintBottom_toBottomOf="@+id/mapView"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toTopOf="@+id/imageView11"
+        app:layout_constraintTop_toTopOf="@+id/mapView"
         app:srcCompat="@drawable/location_hd" />
 
     <ImageView
@@ -185,10 +192,10 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:layout_constraintBottom_toBottomOf="@+id/orderView"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintStart_toStartOf="@+id/guideline1"
-        app:layout_constraintTop_toTopOf="@+id/imageView12"
+        app:layout_constraintTop_toTopOf="@+id/orderView"
         app:layout_constraintVertical_bias="0.483"
         app:srcCompat="@drawable/pigbank_hd" />
 
@@ -253,27 +260,27 @@
         android:text="Map"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+        app:layout_constraintBottom_toBottomOf="@+id/mapView"
         app:layout_constraintStart_toEndOf="@+id/imageView16"
-        app:layout_constraintTop_toTopOf="@+id/imageView11" />
+        app:layout_constraintTop_toTopOf="@+id/mapView" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintDimensionRatio="2:0.6"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         android:fontFamily="@font/productsans_bold"
-        android:text="Payment"
+        android:text="Your Order"
         android:textColor="#FFFFFF"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@+id/orderView"
+        app:layout_constraintDimensionRatio="2:0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView17"
-        app:layout_constraintTop_toTopOf="@+id/imageView12" />
+        app:layout_constraintTop_toTopOf="@+id/orderView" />
 
     <TextView
         android:id="@+id/textView6"
@@ -310,6 +317,22 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView14"
         app:layout_constraintStart_toEndOf="@+id/imageView19"
         app:layout_constraintTop_toTopOf="@+id/imageView14" />
+
+    <TextView
+        android:id="@+id/costTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="23dp"
+        android:fontFamily="@font/productsans_bold"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toTopOf="@+id/pkgView"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.813"
+        app:layout_constraintStart_toEndOf="@+id/nameFetch"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

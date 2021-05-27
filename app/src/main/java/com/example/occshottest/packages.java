@@ -18,8 +18,11 @@ public class packages extends AppCompatActivity {
 
     TextView nameFetch;
     TextView mailFetch;
+    TextView costTotal;
     Button logoutBtn;
     ImageView pkgBtn;
+    ImageView mapBtn;
+    ImageView orderBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +32,17 @@ public class packages extends AppCompatActivity {
         logoutBtn = findViewById(R.id.logoutBtn);
         nameFetch = findViewById(R.id.nameFetch);
         mailFetch = findViewById(R.id.mailFetch);
+        costTotal = findViewById(R.id.costTotal);
         pkgBtn = findViewById(R.id.pkgView);
+        mapBtn = findViewById(R.id.mapView);
+        orderBtn = findViewById(R.id.orderView);
 
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if (signInAccount != null){
             nameFetch.setText(signInAccount.getDisplayName());
             mailFetch.setText(signInAccount.getEmail());
+
+
         }
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
@@ -49,9 +57,24 @@ public class packages extends AppCompatActivity {
         pkgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                pkgBtn.setColorFilter(getResources().getColor(R.color.theme_red));
                 Intent intent2 = new Intent(getApplicationContext(), packages_grid.class);
                 startActivity(intent2);
+            }
+        });
+
+        mapBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent3 = new Intent(getApplicationContext(), maplocation.class);
+                startActivity(intent3);
+            }
+        });
+
+        orderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent4 = new Intent(getApplicationContext(), order.class);
+                startActivity(intent4);
             }
         });
     }
