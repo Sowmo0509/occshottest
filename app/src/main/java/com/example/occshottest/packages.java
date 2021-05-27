@@ -1,5 +1,6 @@
 package com.example.occshottest;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,16 +14,26 @@ import android.widget.TextView;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 public class packages extends AppCompatActivity {
 
-    TextView nameFetch;
-    TextView mailFetch;
-    TextView costTotal;
-    Button logoutBtn;
-    ImageView pkgBtn;
-    ImageView mapBtn;
-    ImageView orderBtn;
+    private TextView nameFetch;
+    private TextView mailFetch;
+    private TextView costTotal;
+    private Button logoutBtn;
+    private ImageView pkgBtn;
+    private ImageView mapBtn;
+    private ImageView orderBtn;
+
+    // Firebase Database Starts
+    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+    private DatabaseReference databaseReference = firebaseDatabase.getReference("Client");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +52,29 @@ public class packages extends AppCompatActivity {
         if (signInAccount != null){
             nameFetch.setText(signInAccount.getDisplayName());
             mailFetch.setText(signInAccount.getEmail());
+            String mailWithDomain = signInAccount.getEmail();
+            String mailWithoutDomain = mailWithDomain.replaceAll("@gmail.com", "");
 
+            //cost show here
+            DatabaseReference priceCheck = databaseReference.child(mailWithoutDomain);
+            priceCheck.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull @org.jetbrains.annotations.NotNull DataSnapshot snapshot) {
+                    if (snapshot.exists()){
+                        String price = snapshot.child("Cost").getValue().toString();
+                        costTotal.setText(price);
+                    }
+                    else{
+                        String priceNo = "No Package Selected";
+                        costTotal.setText(priceNo);
+                    }
+                }
 
+                @Override
+                public void onCancelled(@NonNull @org.jetbrains.annotations.NotNull DatabaseError error) {
+                    // goes empty
+                }
+            });
         }
 
         logoutBtn.setOnClickListener(new View.OnClickListener() {
