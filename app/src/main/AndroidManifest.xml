@@ -12,16 +12,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OCCSHOTtest">
-        <activity android:name=".order"></activity>
+        <activity android:name=".status"/>
+        <activity android:name=".order" />
         <activity android:name=".maplocation" />
         <activity android:name=".packages_grid" />
-        <activity android:name=".packages" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".packages">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
         </activity>
     </application>
 

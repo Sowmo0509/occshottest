@@ -30,6 +30,7 @@ public class packages extends AppCompatActivity {
     private ImageView pkgBtn;
     private ImageView mapBtn;
     private ImageView orderBtn;
+    private ImageView statusView;
 
     // Firebase Database Starts
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -47,6 +48,7 @@ public class packages extends AppCompatActivity {
         pkgBtn = findViewById(R.id.pkgView);
         mapBtn = findViewById(R.id.mapView);
         orderBtn = findViewById(R.id.orderView);
+        statusView = findViewById(R.id.statusView);
 
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if (signInAccount != null){
@@ -107,6 +109,14 @@ public class packages extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent4 = new Intent(getApplicationContext(), order.class);
                 startActivity(intent4);
+            }
+        });
+
+        statusView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent5 = new Intent(getApplicationContext(), status.class);
+                startActivity(intent5);
             }
         });
     }
