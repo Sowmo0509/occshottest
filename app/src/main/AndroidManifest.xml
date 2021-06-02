@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OCCSHOTtest">
-        <activity android:name=".status"/>
+        <activity android:name=".delivery"></activity>
+        <activity android:name=".status" />
         <activity android:name=".order" />
         <activity android:name=".maplocation" />
         <activity android:name=".packages_grid" />
@@ -23,8 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
