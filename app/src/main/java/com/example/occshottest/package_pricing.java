@@ -2,6 +2,7 @@ package com.example.occshottest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -12,31 +13,32 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-public class order extends AppCompatActivity {
+public class package_pricing extends AppCompatActivity {
 
-    private WebView orderWv;
+    // WebView List
+    private WebView pkgWv;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
+        setContentView(R.layout.activity_package_pricing);
 
         if(!isConnected(this)){
             showCustomDialogue();
         }
 
-        orderWv = (WebView) findViewById(R.id.orderWv);
-        orderWv.setWebViewClient(new WebViewClient());
-        orderWv.loadUrl("https://occshot.weeblysite.com/book-an-event");
-
-        WebSettings webSettings = orderWv.getSettings();
+        pkgWv = (WebView) findViewById(R.id.pkgWv);
+        pkgWv.setWebViewClient(new WebViewClient());
+        pkgWv.loadUrl("https://occshot.weeblysite.com/#FEWvRM");
+        WebSettings webSettings = pkgWv.getSettings();
         webSettings.setJavaScriptEnabled(true);
     }
 
     @Override
     public void onBackPressed() {
-        if(orderWv.canGoBack()){
-            orderWv.goBack();
+        if(pkgWv.canGoBack()){
+            pkgWv.goBack();
         }else{
             super.onBackPressed();
         }
@@ -61,8 +63,8 @@ public class order extends AppCompatActivity {
         startActivity(new Intent(this, noInternet.class));
     }
 
-    private boolean isConnected(order order) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) order.getSystemService(Context.CONNECTIVITY_SERVICE);
+    private boolean isConnected(package_pricing package_pricing) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) package_pricing.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo wifiConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobileConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);

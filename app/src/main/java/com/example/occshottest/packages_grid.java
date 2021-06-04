@@ -3,9 +3,18 @@ package com.example.occshottest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -79,6 +88,10 @@ public class packages_grid extends AppCompatActivity {
         pkg4price = findViewById(R.id.pkg4price);
         pkg5price = findViewById(R.id.pkg5price);
         pkg6price = findViewById(R.id.pkg6price);
+
+        if(!isConnected(this)){
+            showCustomDialogue();
+        }
     }
 
     @Override
@@ -321,5 +334,81 @@ public class packages_grid extends AppCompatActivity {
                 // goes empty
             }
         });
+
+        // WEBVIEW
+        pkg1img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWebView();
+            }
+        });
+        pkg2img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWebView();
+            }
+        });
+        pkg3img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWebView();
+            }
+        });
+        pkg4img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWebView();
+            }
+        });
+        pkg5img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWebView();
+            }
+        });
+        pkg6img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWebView();
+            }
+        });
+    }
+
+    private void openWebView() {
+        Intent intent = new Intent(getApplicationContext(), package_pricing.class);
+        startActivity(intent);
+    }
+
+    private void showCustomDialogue() {
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(packages.this);
+        builder.setMessage("Please connect to the internet.").setCancelable(false).setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+            }
+        })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
+                    }
+                });*/
+        Toast.makeText(this, "NO INTERNET", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, noInternet.class));
+    }
+
+    private boolean isConnected(packages_grid packages_grid) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) packages_grid.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        if((wifiConnection != null && wifiConnection.isConnected()) || (mobileConnection != null && mobileConnection.isConnected())){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 }

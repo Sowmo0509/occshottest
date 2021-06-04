@@ -1,15 +1,22 @@
 package com.example.occshottest;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -31,6 +38,7 @@ public class packages extends AppCompatActivity {
     private ImageView mapBtn;
     private ImageView orderBtn;
     private ImageView statusView;
+    private ImageView deliveryView;
 
     // Firebase Database Starts
     private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -49,6 +57,11 @@ public class packages extends AppCompatActivity {
         mapBtn = findViewById(R.id.mapView);
         orderBtn = findViewById(R.id.orderView);
         statusView = findViewById(R.id.statusView);
+        deliveryView = findViewById(R.id.deliveryView);
+
+        if(!isConnected(this)){
+            showCustomDialogue();
+        }
 
         GoogleSignInAccount signInAccount = GoogleSignIn.getLastSignedInAccount(this);
         if (signInAccount != null){
@@ -119,5 +132,46 @@ public class packages extends AppCompatActivity {
                 startActivity(intent5);
             }
         });
+
+        deliveryView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent6 = new Intent(getApplicationContext(), delivery.class);
+                startActivity(intent6);
+            }
+        });
+    }
+
+    private void showCustomDialogue() {
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(packages.this);
+        builder.setMessage("Please connect to the internet.").setCancelable(false).setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+            }
+        })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
+                    }
+                });*/
+        Toast.makeText(this, "NO INTERNET", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, noInternet.class));
+    }
+
+    private boolean isConnected(packages packages) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) packages.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        if((wifiConnection != null && wifiConnection.isConnected()) || (mobileConnection != null && mobileConnection.isConnected())){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 }

@@ -6,12 +6,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -34,27 +38,34 @@ public class maplocation extends AppCompatActivity implements LocationListener {
     Button button_location;
     TextView textLocation1;
     TextView textLocation3;
+    TextView updateTime;
     LocationManager locationManager;
     private DatabaseReference rootDatabaseref;
     private DatabaseReference rootDatabaseref2;
+    private DatabaseReference rootDatabaseref4;
     private double latgeo_db;
     private double longgeo_db;
     double datalat;
     double datalong;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maplocation);
 
+        if(!isConnected(this)){
+            showCustomDialogue();
+        }
+
         textLocation1 = findViewById(R.id.textLocation1);
+        updateTime = findViewById(R.id.updateTime);
         //textLocation2 dorkar nai tai deleted
         textLocation3 = findViewById(R.id.textLocation3);
         button_location = findViewById(R.id.button_location);
 
         rootDatabaseref = FirebaseDatabase.getInstance().getReference("Lat");
         rootDatabaseref2 = FirebaseDatabase.getInstance().getReference("Long");
+        rootDatabaseref4 = FirebaseDatabase.getInstance().getReference("Location Time");
 
         // Runtime Permission for Location Access
         if (ContextCompat.checkSelfPermission(maplocation.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -81,6 +92,18 @@ public class maplocation extends AppCompatActivity implements LocationListener {
                     @Override
                     public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                         datalat = Double.parseDouble(snapshot.getValue().toString());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+                    }
+                });
+                rootDatabaseref4.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                        String timeCode = snapshot.getValue().toString();
+                        updateTime.setText(timeCode);
                     }
 
                     @Override
@@ -144,6 +167,39 @@ public class maplocation extends AppCompatActivity implements LocationListener {
 
     @Override
     public void onProviderDisabled(@NonNull String provider) {
+
+    }
+
+    private void showCustomDialogue() {
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(packages.this);
+        builder.setMessage("Please connect to the internet.").setCancelable(false).setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+            }
+        })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
+                    }
+                });*/
+        Toast.makeText(this, "NO INTERNET", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, noInternet.class));
+    }
+
+    private boolean isConnected(maplocation maplocation) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) maplocation.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        if((wifiConnection != null && wifiConnection.isConnected()) || (mobileConnection != null && mobileConnection.isConnected())){
+            return true;
+        }else{
+            return false;
+        }
 
     }
 }

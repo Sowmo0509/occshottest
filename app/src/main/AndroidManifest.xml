@@ -12,19 +12,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OCCSHOTtest">
-        <activity android:name=".delivery"></activity>
+        <activity android:name=".package_pricing"></activity>
+        <activity android:name=".noInternet" />
+        <activity android:name=".delivery" />
         <activity android:name=".status" />
         <activity android:name=".order" />
         <activity android:name=".maplocation" />
-        <activity android:name=".packages_grid" />
-        <activity android:name=".packages">
+        <activity android:name=".packages_grid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".packages"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

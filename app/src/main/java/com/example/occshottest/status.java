@@ -3,9 +3,14 @@ package com.example.occshottest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -16,7 +21,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
-import org.w3c.dom.Text;
 
 public class status extends AppCompatActivity {
 
@@ -30,19 +34,23 @@ public class status extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_status);
 
-        orderVerifyTime = findViewById(R.id.orderVerifyTime);
-        arrivalTime = findViewById(R.id.arrivalTime);
-        timeStart = findViewById(R.id.timeStart);
-        timeEnd = findViewById(R.id.timeEnd);
-        overTime = findViewById(R.id.overTime);
-        photoshootEnd = findViewById(R.id.photoshootEnd);
+        orderVerifyTime = findViewById(R.id.shootEndDate);
+        arrivalTime = findViewById(R.id.paymentDate);
+        timeStart = findViewById(R.id.jpegDeliveryDate);
+        timeEnd = findViewById(R.id.pickingDate);
+        overTime = findViewById(R.id.printingDate);
+        photoshootEnd = findViewById(R.id.closeDate);
 
-        orderTick = findViewById(R.id.orderTick);
-        arrivalTick = findViewById(R.id.arrivalTick);
-        startTick = findViewById(R.id.startTick);
-        endTick = findViewById(R.id.endTick);
-        overtimeTick = findViewById(R.id.overtimeTick);
-        shootEndTick = findViewById(R.id.shootEndTick);
+        orderTick = findViewById(R.id.shootTick);
+        arrivalTick = findViewById(R.id.paymentTick);
+        startTick = findViewById(R.id.jpegTick);
+        endTick = findViewById(R.id.pickTick);
+        overtimeTick = findViewById(R.id.printingTick);
+        shootEndTick = findViewById(R.id.closeTick);
+
+        if(!isConnected(this)){
+            showCustomDialogue();
+        }
 
         addOrderTime();
 
@@ -172,5 +180,38 @@ public class status extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void showCustomDialogue() {
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(packages.this);
+        builder.setMessage("Please connect to the internet.").setCancelable(false).setPositiveButton("Connect", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+            }
+        })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
+                    }
+                });*/
+        Toast.makeText(this, "NO INTERNET", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, noInternet.class));
+    }
+
+    private boolean isConnected(status status) {
+        ConnectivityManager connectivityManager = (ConnectivityManager) status.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo wifiConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileConnection = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        if((wifiConnection != null && wifiConnection.isConnected()) || (mobileConnection != null && mobileConnection.isConnected())){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 }
